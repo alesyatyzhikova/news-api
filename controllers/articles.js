@@ -1,21 +1,40 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/notFoundError');
-const NotAuthError = require('../errors/notAuthError');
+const ForbiddenError = require('../errors/forbiddenError');
 const { messages } = require('../errors/error-messages');
 
 // Получаем все сохраненные статьи пользователя
 module.exports.getArticles = (req, res, next) => {
   Article.find({ owner: req.user._id })
-    .orFail(() => new NotFoundError(messages.article.notExist))
+    .orFail(() => new NotFoundError())
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
 
 // Создаем статью
 module.exports.createArticle = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image } = req.body;
+  const {
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+  } = req.body;
   const owner = req.user._id;
-  Article.create({ keyword, title, text, date, source, link, image, owner })
+  Article.create(
+    {
+      keyword,
+      title,
+      text,
+      date,
+      source,
+      link,
+      image,
+      owner,
+    },
+  )
     .then((article) => res.send({
       data: {
         keyword: article.keyword,
@@ -24,8 +43,8 @@ module.exports.createArticle = (req, res, next) => {
         date: article.date,
         source: article.source,
         link: article.link,
-        image: article.image
-      }
+        image: article.image,
+      },
     }))
     .catch(next);
 };
@@ -33,10 +52,10 @@ module.exports.createArticle = (req, res, next) => {
 // Удаляем статью
 module.exports.deleteArticle = (req, res, next) => {
   Article.findById(req.params.id)
-    .orFail(() => new NotFoundError(messages.article.notExist))
+    .orFail(() => new NotFoundError())
     .then((article) => {
       if (article.owner._id.toString() !== req.user._id) {
-        throw new NotAuthError(messages.article.forbidden);
+        throw new ForbiddenError();
       }
       return Article.findByIdAndDelete(req.params.id)
         .then(() => res.send({ message: messages.article.successDelete }));

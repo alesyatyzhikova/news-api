@@ -1,5 +1,10 @@
-const { messages } = require('../errors/error-messages');
+const ServerError = require('../errors/serverError');
 
 module.exports.errorHandler = (err, req, res, next) => {
-  res.status(err.statusCode || 500).send({ message: err.statusCode === 500 ? messages.requestError.serverError : err.message });
+  const status = err.status || 500;
+  const message = err.message || new ServerError();
+  if (res.headerSent) {
+    return next(err);
+  }
+  return res.status(status).send(message);
 };

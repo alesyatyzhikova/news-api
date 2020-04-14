@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const { PORT, DATABASE } = require('./config');
+const { PORT, DATABASE, NODE_ENV } = require('./config');
 const routes = require('./routes');
 
 const app = express();
@@ -20,5 +20,5 @@ mongoose.connect(DATABASE, {
 app.use(routes);
 
 app.listen(PORT, () => {
-  console.log('Success')
-})
+  console.log(NODE_ENV);
+});

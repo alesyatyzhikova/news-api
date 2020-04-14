@@ -7,5 +7,5 @@ const JWT_SECRET = process.env.NODE_ENV === 'production' ? process.env.JWT_SECRE
 module.exports = {
   PORT,
   DATABASE,
-  JWT_SECRET
-}
+  JWT_SECRET,
+};

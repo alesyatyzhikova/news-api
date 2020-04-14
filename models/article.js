@@ -44,12 +44,11 @@ const articleSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required: true,
-    select: false
+    select: false,
   },
 },
-  {
-    versionKey: false,
-  },
-)
+{
+  versionKey: false,
+});
 
 module.exports = mongoose.model('article', articleSchema);

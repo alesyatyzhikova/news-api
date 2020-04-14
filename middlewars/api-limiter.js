@@ -6,5 +6,5 @@ const apiLimiter = new RateLimit({
 });
 
 module.exports = {
-  apiLimiter
-}
+  apiLimiter,
+};

@@ -4,13 +4,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotFoundError = require('../errors/notFoundError');
 const { JWT_SECRET } = require('../config');
-const { messages } = require('../errors/error-messages');
 
 
 // Объект пользователя
 module.exports.getUser = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail(() => new NotFoundError(messages.user.notExist))
+    .orFail(() => new NotFoundError())
     .then((user) => res.send({ email: user.email, name: user.name }))
     .catch(next);
 };

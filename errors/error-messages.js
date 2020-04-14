@@ -3,13 +3,13 @@ const messages = {
     emailEmpty: 'Поле email не должно быть пустым',
     emailInvalid: 'Введите верный формат для email',
     emailRequired: 'Поле email обязательно',
-    emailUnique: 'Такой email уже существует'
+    emailUnique: 'Такой email уже существует',
   },
   password: {
     passwordEmpty: 'Поле пароль не должно быть пустым',
     passwordRequired: 'Поле пароль обязательно',
     passwordMin: 'Пароль должен содержать минимум 8 знаков',
-    passwordPattern: 'Пароль должен содержать латинские буквы и символы, как минимум одну строчную и одну заглавную букву и одну цифру'
+    passwordPattern: 'Пароль должен содержать латинские буквы и символы, как минимум одну строчную и одну заглавную букву и одну цифру',
   },
   text: {
     textEmpty: 'Поле пароль не должно быть пустым',
@@ -29,14 +29,10 @@ const messages = {
   article: {
     notExist: 'Такой статьи не существует',
     forbidden: 'Нет прав на удаление статьи',
-    successDelete: 'Статья удалена успешно'
+    successDelete: 'Статья удалена успешно',
   },
-  requestError: {
-    notFound: 'Запрашиваемый ресурс не найден',
-    serverError: 'На сервере произошла ошибка',
-  }
 };
 
 module.exports = {
-  messages
-}
+  messages,
+};

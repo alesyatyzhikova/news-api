@@ -4,8 +4,8 @@
   "description": "News-api",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
-    "dev": "nodemon app"
+    "start": "NODE_ENV=production node app",
+    "dev": "NODE_ENV=development nodemon app"
   },
   "repository": {
     "type": "git",
