@@ -18,7 +18,7 @@
 ###### Для установки и запуска проекта локально необходимо: ######
 
 * Установить Node.js (если не установлено)
-* Клонировать репозиторий: git clone https://github.com/alesyatyzhikova/api-news.git
+* Клонировать репозиторий: git clone https://github.com/alesyatyzhikova/news-api.git
 * Установить зависимости: npm init => npm install
 * Запустить сервер командой npm run start
 * Для автоматической перезагрузки сервера использовать команду npm run dev
