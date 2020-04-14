@@ -13,7 +13,7 @@ const users = require('./users');
 const { requestLogger, errorLogger } = require('../middlewars/logger');
 const { errorHandler } = require('../middlewars/error-handler');
 const { apiLimiter } = require('../middlewars/api-limiter');
-const { messages } = require('../errors/error-messages');
+const NotFoundError = require('../errors/notFoundError');
 
 // Cookie и body парсеры
 router.use(cookieParser());
@@ -35,7 +35,7 @@ router.use('/signin', login);
 router.use('/articles', articles);
 router.use('/users', users);
 router.all('*', (req, res) => {
-  res.status(404).json({ message: messages.requestError.notFound });
+  res.status(404).json(new NotFoundError());
 });
 
 // Ошибки

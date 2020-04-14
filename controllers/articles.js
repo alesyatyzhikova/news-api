@@ -1,7 +1,6 @@
 const Article = require('../models/article');
 const NotFoundError = require('../errors/notFoundError');
 const ForbiddenError = require('../errors/forbiddenError');
-const { messages } = require('../errors/error-messages');
 
 // Получаем все сохраненные статьи пользователя
 module.exports.getArticles = (req, res, next) => {
@@ -51,14 +50,14 @@ module.exports.createArticle = (req, res, next) => {
 
 // Удаляем статью
 module.exports.deleteArticle = (req, res, next) => {
-  Article.findById(req.params.id)
+  Article.findById(req.params.id).select('+owner')
     .orFail(() => new NotFoundError())
     .then((article) => {
       if (article.owner._id.toString() !== req.user._id) {
         throw new ForbiddenError();
       }
       return Article.findByIdAndDelete(req.params.id)
-        .then(() => res.send({ message: messages.article.successDelete }));
+        .then(() => res.send('Статья удалена успешно'));
     })
     .catch(next);
 };
