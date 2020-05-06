@@ -1,9 +1,11 @@
 const router = require('express').Router();
+const cors = require('cors');
 
 const { getArticles, createArticle, deleteArticle } = require('../controllers/articles');
 const { validCreateArticle, validDeleteArticle } = require('../middlewars/validation');
 const auth = require('../middlewars/auth');
 
+router.use(cors);
 router.use(auth);
 
 // Получаем все сохраненные статьи пользователя
