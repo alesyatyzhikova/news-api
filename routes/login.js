@@ -7,7 +7,7 @@ const { validLoginUser } = require('../middlewars/validation');
 router.use(cors({
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
-  credentials: true,
+  credentials: 'include',
 }));
 
 // Аутентификация пользователя

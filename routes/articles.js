@@ -8,7 +8,7 @@ const auth = require('../middlewars/auth');
 router.use(cors({
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
-  credentials: true,
+  credentials: 'include',
 }));
 router.use(auth);
 
