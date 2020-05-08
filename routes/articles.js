@@ -6,7 +6,7 @@ const { validCreateArticle, validDeleteArticle } = require('../middlewars/valida
 const auth = require('../middlewars/auth');
 
 router.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:8080',
   optionsSuccessStatus: 200,
   credentials: 'include',
 }));
