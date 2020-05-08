@@ -13,7 +13,7 @@ mongoose.connect(DATABASE, {
   useFindAndModify: false,
   useUnifiedTopology: true,
 })
-  .then(() => 'Подключение к базе успешно')
+  .then(() => console.log('Подключение к базе успешно'))
   .catch((err) => err.message);
 
 // Подключаем роуты

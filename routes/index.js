@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const cors = require('cors');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 
@@ -17,6 +18,12 @@ const NotFoundError = require('../errors/notFoundError');
 
 // Cookie и body парсеры
 router.use(cookieParser());
+
+router.use(cors({
+  origin: 'http://localhost:8080',
+  credentials: true,
+}));
+
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
