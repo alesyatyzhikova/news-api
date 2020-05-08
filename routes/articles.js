@@ -5,7 +5,11 @@ const { getArticles, createArticle, deleteArticle } = require('../controllers/ar
 const { validCreateArticle, validDeleteArticle } = require('../middlewars/validation');
 const auth = require('../middlewars/auth');
 
-router.use(cors());
+router.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+  credentials: true,
+}));
 router.use(auth);
 
 // Получаем все сохраненные статьи пользователя
