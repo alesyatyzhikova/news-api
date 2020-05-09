@@ -18,13 +18,19 @@ module.exports.getUser = (req, res, next) => {
 module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
 
-  bcrypt.hash(password, 10)
-    .then((hash) => User.create({
-      name,
-      email,
-      password: hash,
-    }))
-    .then(() => res.send('Пользователь создан'))
+  User.exists({ email })
+    .then((user) => {
+      if (user) res.send({ error: 'Такой Email уже существует' });
+    })
+    .then(() => {
+      bcrypt.hash(password, 10)
+        .then((hash) => User.create({
+          name,
+          email,
+          password: hash,
+        }));
+    })
+    .then(() => res.send({ message: 'Пользователь создан' }))
     .catch(next);
 };
 

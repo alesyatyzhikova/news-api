@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const { messages } = require('../errors/error-messages');
 
@@ -16,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    dropDups: true,
     validate: {
       validator: (value) => validator.isEmail(value),
       message: messages.email.emailInvalid,
@@ -46,7 +46,5 @@ userSchema.statics.findUserByCredentials = function (email, password) {
         });
     });
 };
-
-userSchema.plugin(uniqueValidator, { message: messages.email.emailUnique });
 
 module.exports = mongoose.model('user', userSchema);
