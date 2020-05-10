@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 const NotFoundError = require('../errors/notFoundError');
+const ExistError = require('../errors/existError');
 const { JWT_SECRET } = require('../config');
 
 
@@ -20,7 +21,7 @@ module.exports.createUser = (req, res, next) => {
 
   User.exists({ email })
     .then((user) => {
-      if (user) res.send({ error: 'Такой Email уже существует' });
+      if (user) throw new ExistError();
     })
     .then(() => {
       bcrypt.hash(password, 10)
