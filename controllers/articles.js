@@ -43,6 +43,7 @@ module.exports.createArticle = (req, res, next) => {
         source: article.source,
         link: article.link,
         image: article.image,
+        id: article._id,
       },
     }))
     .catch(next);
