@@ -66,11 +66,10 @@ module.exports.validCreateArticle = celebrate({
         'string.empty': messages.text.textEmpty,
         'any.required': messages.text.textEmpty,
       }),
-    source: Joi.string().required().uri()
+    source: Joi.string().required()
       .messages({
         'string.empty': messages.text.textEmpty,
         'any.required': messages.text.textEmpty,
-        'string.uri': messages.text.textUrl,
       }),
     link: Joi.string().required().uri()
       .messages({
