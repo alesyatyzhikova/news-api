@@ -20,7 +20,7 @@ const NotFoundError = require('../errors/notFoundError');
 router.use(cookieParser());
 
 router.use(cors({
-  origin: 'http://localhost:8080',
+  origin: 'https://alesyatyzhikova.github.io/news-explorer',
   credentials: true,
 }));
 
