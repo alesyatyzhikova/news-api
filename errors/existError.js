@@ -3,8 +3,8 @@ const error = require('../costants/errors');
 class ExistError extends Error {
   constructor(message) {
     super(message);
-    this.statusCode = 409;
-    this.message = message || error.EXIST_ERROR;
+    this.status = 409;
+    this.message = { error: message } || { error: error.EXIST_ERROR };
   }
 }
 
