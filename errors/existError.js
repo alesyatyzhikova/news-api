@@ -4,7 +4,7 @@ class ExistError extends Error {
   constructor(message) {
     super(message);
     this.status = 409;
-    this.message = { error: message } || { error: error.EXIST_ERROR };
+    this.message = message || error.EXIST_ERROR;
   }
 }
 
