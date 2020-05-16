@@ -4,4 +4,5 @@ module.exports = {
   FORBIDDEN: 'Доступ запрещен',
   SERVER_ERROR: 'Что-то пошло не так',
   EXIST_ERROR: 'Такой email уже существует',
+  LOGIN_ERROR: 'Неправильные почта или пароль',
 };
